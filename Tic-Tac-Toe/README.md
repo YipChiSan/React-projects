@@ -1,4 +1,4 @@
-# README #
+# README.md #
 ## Description ##
 
 This is a game called Tic-Tac-Toe. The role of this game is described [here](https://en.wikipedia.org/wiki/Tic-tac-toe).
