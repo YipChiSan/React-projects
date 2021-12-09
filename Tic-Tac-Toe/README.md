@@ -1,9 +1,9 @@
-#README
-##Description
+#README#
+##Description##
 
 This is a game called Tic-Tac-Toe. The role of this game is described [here](https://en.wikipedia.org/wiki/Tic-tac-toe).
 
-##User Stories
+##User Stories##
 1. I have a board to play the game.
 2. I can click one of the patches on the board to mark that space.
 3. I will be notified once there is a winner.
