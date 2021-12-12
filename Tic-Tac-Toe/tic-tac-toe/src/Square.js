@@ -5,9 +5,20 @@ export default function Square(props) {
         border: "solid",
     };
 
-    return (
-        <div style={myStyle} id={props.id} occupiedBy={props.occupier}>
+    const mark = function (e) {
+        if (e.target.occupiedBy == "none") {
+            e.target.textContent = "X";
+        }
+    }
 
-        </div>
+    return (
+        <div
+            style={myStyle}
+            id={props.id}
+            occupiedBy={props.occupier}
+            onClick={mark}
+        />
+
+        
         );
 }
