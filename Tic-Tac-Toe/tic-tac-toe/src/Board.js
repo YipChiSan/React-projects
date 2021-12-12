@@ -5,13 +5,11 @@ export default function Board() {
 
     const idList = Array.from(Array(9).keys());
 
-    const squareList = idList.map(function (id) {
-        return <Square
-            id={id}
-        />
-    });
+    const squareList = idList.map(id => (<Square id={ id } />));
 
     return (
-        { squareList }
+        <ul>
+            {squareList}
+        </ul>
         );
 }
