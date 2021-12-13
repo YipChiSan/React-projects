@@ -5,11 +5,17 @@ export default function Board() {
 
     const idList = Array.from(Array(9).keys());
 
-    const squareList = idList.map(id => (<Square id={ id } />));
+    const myStyle = {
+        height: "200px",
+        weight: "200px",
+        display: "grid",
+        gridGap: "1px",
+        gridTemplateColumns: "repeat(3, 1fr)",
+    };
 
     return (
-        <ul>
-            {squareList}
-        </ul>
+        <div style={myStyle}>
+            {idList.map(id => <Square id={id} key={id} />)}
+        </div>
         );
 }
