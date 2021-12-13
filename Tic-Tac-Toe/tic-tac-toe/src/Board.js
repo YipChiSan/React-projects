@@ -6,8 +6,10 @@ export default function Board() {
     const idList = Array.from(Array(9).keys());
 
     const myStyle = {
-        height: "200px",
-        weight: "200px",
+        marginLeft: "auto",
+        marginRight: "auto",
+        width: "500px",
+        height: "500px",
         display: "grid",
         gridGap: "1px",
         gridTemplateColumns: "repeat(3, 1fr)",
