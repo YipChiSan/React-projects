@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import Square from "./Square";
 
 export default function Board() {
+
+    const [isX, setRound] = useState(true);
 
     const idList = Array.from(Array(9).keys());
 
@@ -15,9 +17,13 @@ export default function Board() {
         gridTemplateColumns: "repeat(3, 1fr)",
     };
 
+    const handleChange = function () {
+        setRound(!isX);
+    }
+
     return (
         <div style={myStyle}>
-            {idList.map(id => <Square id={id} key={id} />)}
+            {idList.map(id => <Square id={id} key={id} aftermarking={handleChange} isX={isX} />)}
         </div>
         );
 }

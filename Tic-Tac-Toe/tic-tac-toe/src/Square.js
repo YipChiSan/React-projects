@@ -3,6 +3,7 @@ import React, { useState } from "react";
 export default function Square(props) {
 
     const [value, setOccupier] = useState("none");
+    
 
     const squareStyle = {
         border: "solid",
@@ -10,13 +11,20 @@ export default function Square(props) {
         textAlign: "center",
     };
 
-    
-
     const mark = function (e) {
-        
+        let marker;
         if (e.currentTarget.getAttribute("value") === "none") {
-            e.target.textContent = "X";
-            setOccupier("X");
+            
+            if (props.isX) {
+                marker = "X";
+            }
+            else {
+                marker = "O";
+            }
+            e.target.textContent = marker;
+            setOccupier(marker);
+            props.aftermarking();
+            
         }
     }
 
