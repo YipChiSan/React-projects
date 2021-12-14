@@ -23,7 +23,7 @@ export default function Square(props) {
             }
             e.target.textContent = marker;
             setOccupier(marker);
-            props.aftermarking();
+            props.aftermarking(props.id);
             
         }
     }
