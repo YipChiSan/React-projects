@@ -3,13 +3,13 @@ import Square from "./Square";
 
 export default function Board(props) {
 
-    const [isX, setRound] = useState(true);
+    let [isX, setRound] = useState(true);
 
-    const [board, updateBoard] = useState(new Array(9));
+    let [board, updateBoard] = useState(new Array(9));
 
-    const [record, updateRecord] = useState(new Array());
+    let [record, updateRecord] = useState(new Array());
 
-    const idList = Array.from(Array(9).keys());
+    let idList = Array.from(Array(9).keys());
 
     const myStyle = {
         marginLeft: "auto",
