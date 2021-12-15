@@ -6,7 +6,8 @@ export default function Board(props) {
     const [isX, setRound] = useState(true);
 
     const [board, updateBoard] = useState(new Array(9));
-    
+
+    const [record, updateRecord] = useState(new Array());
 
     const idList = Array.from(Array(9).keys());
 
@@ -40,7 +41,8 @@ export default function Board(props) {
         
         board[position] = marker;
         updateBoard(board);
-        
+        record = [...record, board];
+        updateRecord(record);
     };
 
     let decideWinner = function () {
