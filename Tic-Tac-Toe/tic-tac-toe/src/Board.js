@@ -5,7 +5,8 @@ export default function Board(props) {
 
     const [isX, setRound] = useState(true);
 
-    let board = new Array(9);
+    const [board, updateBoard] = useState(new Array(9));
+    
 
     const idList = Array.from(Array(9).keys());
 
@@ -27,7 +28,7 @@ export default function Board(props) {
         }
 
         let winner = decideWinner();
-        
+        console.log(winner);
         if (winner !== null) {
             
             props.haveWinner(winner);
@@ -38,6 +39,7 @@ export default function Board(props) {
     let modifiedBoard = function (marker, position) {
         
         board[position] = marker;
+        updateBoard(board);
         
     };
 

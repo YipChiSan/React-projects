@@ -1,21 +1,23 @@
-import React, {useState} from "react";
+import React from "react";
 import Board from "./Board";
 import ReactDOM from 'react-dom'
 
 export default function Game() {
 
-    const [winner, setWinner] = useState(null);
+    const myStyle = {
+        textAlign: "center",
+    };
 
     let haveWinner = function (person) {
-        setWinner(person);
-        let declaration = <h2>{"Our winner is " + winner}</h2>;
+
+        let declaration = <h2>{"Our winner is " + person}</h2>;
         ReactDOM.render(declaration, document.getElementById('declaration'));
     }
 
     return (
         <div>
             <Board haveWinner={haveWinner} />
-            <div id="declaration"></div>
+            <div style={myStyle} id="declaration"></div>
         </div>
     );
 }

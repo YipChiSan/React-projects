@@ -3,7 +3,6 @@ import React, { useState } from "react";
 export default function Square(props) {
 
     const [value, setOccupier] = useState("none");
-    
 
     const squareStyle = {
         border: "solid",
