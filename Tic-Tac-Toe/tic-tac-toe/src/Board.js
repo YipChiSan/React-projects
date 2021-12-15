@@ -41,8 +41,9 @@ export default function Board(props) {
         
         board[position] = marker;
         updateBoard(board);
-        record = [...record, board];
+        record = [...record, [marker, position]];
         updateRecord(record);
+        console.log(record);
     };
 
     let decideWinner = function () {
