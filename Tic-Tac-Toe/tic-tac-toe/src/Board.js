@@ -11,6 +11,18 @@ export default function Board(props) {
 
     let idList = Array.from(Array(9).keys());
 
+    const DATA = [
+        { id: 0, value: null, isX: false },
+        { id: 1, value: null, isX: false },
+        { id: 2, value: null, isX: false },
+        { id: 3, value: null, isX: false },
+        { id: 4, value: null, isX: false },
+        { id: 5, value: null, isX: false },
+        { id: 6, value: null, isX: false },
+        { id: 7, value: null, isX: false },
+        { id: 8, value: null, isX: false },
+    ];
+
     const myStyle = {
         marginLeft: "auto",
         marginRight: "auto",
