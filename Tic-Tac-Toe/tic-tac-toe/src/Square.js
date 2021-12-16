@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function Square(props) {
-
-    const [value, setOccupier] = useState("none");
 
     const squareStyle = {
         border: "solid",
@@ -10,32 +8,21 @@ export default function Square(props) {
         textAlign: "center",
     };
 
-    const mark = function (e) {
-        let marker;
-        if (e.currentTarget.getAttribute("value") === "none") {
-            
-            if (props.isX) {
-                marker = "X";
-            }
-            else {
-                marker = "O";
-            }
-            e.target.textContent = marker;
-            setOccupier(marker);
-            props.aftermarking(props.id);
-            
-        }
-    }
+    const mark = function () {
+        props.handleClick(props.id);
+    };
+
+    
 
     return (
         <div
             style={squareStyle}
             id={props.id}
-            value={value}
+            value={props.value}
             onClick={mark}
             key={props.id}
         >
-            &nbsp;
+            {(props.value !== null) ? props.value : '\u00A0'}
         </div>
 
         

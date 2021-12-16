@@ -1,11 +1,14 @@
 import React, {useState} from "react";
 import Square from "./Square";
+import TimeTravelButton from "./TimeTravelButton";
 
 export default function Board(props) {
 
     let [isX, setRound] = useState(true);
 
-    let [record, updateRecord] = useState(new Array());
+    let [record, updateRecord] = useState([[null, null]]);
+
+    let [step, updateStep] = useState(0);
 
     let [board, updateBoard] = useState([
         { id: 0, value: null },
@@ -17,6 +20,10 @@ export default function Board(props) {
         { id: 6, value: null },
         { id: 7, value: null },
         { id: 8, value: null },
+    ]);
+
+    let [buttonGroup, updateButtonGroup] = useState([
+        {id:0, text:"Start Game"},
     ]);
 
     const myStyle = {
@@ -46,11 +53,24 @@ export default function Board(props) {
     };
 
     let modifiedBoard = function (marker, position) {
+        let nextStep = step + 1;
+        updateStep(nextStep);
         board[position].value = marker;
         updateBoard(board);
         record = [...record, [marker, position]];
         updateRecord(record);
-        console.log(record);
+        let newButton = { id: nextStep, text: "Move #" + nextStep};
+        buttonGroup = [...buttonGroup, newButton];
+        updateButtonGroup(buttonGroup);
+    };
+
+    let timeTravel = function (position) {
+        for (let i = record.length - 1; i > position; i--) {
+            board[record[i][1]].value = null;
+        }
+        updateBoard(board.slice());
+        console.log(board);
+        
     };
 
     let decideWinner = function () {
@@ -98,11 +118,25 @@ export default function Board(props) {
         return null;
     };
 
-    
+    let mark = function (position) {
+        if (board[position].value === null) {
+            if (isX) {
+                board[position].value = "X";
+                updateBoard(board);
+            } else {
+                board[position].value = "O";
+                updateBoard(board);
+            }
+            handleChange(position);
+        }
+    };
 
     return (
-        <div style={myStyle}>
-            {board.map(square => <Square id={square.id} key={square.id} aftermarking={handleChange} isX={isX} />)}
+        <div>
+            <div style={myStyle}>
+                {board.map(square => <Square id={square.id} key={square.id} handleClick={mark} isX={isX} value={square.value} />)}
+            </div>
+            {buttonGroup.map(button => <TimeTravelButton id={button.id} key={button.id} text={button.text} handleClick={timeTravel} />)}
         </div>
         );
 }

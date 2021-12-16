@@ -1,6 +1,6 @@
 import React from "react";
 import Board from "./Board";
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
 
 export default function Game() {
 
