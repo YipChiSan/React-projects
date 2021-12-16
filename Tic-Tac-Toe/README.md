@@ -9,3 +9,7 @@ This is a game called Tic-Tac-Toe. The role of this game is described [here](htt
  3. I will be notified once there is a winner.
  4. I can restart the game anytime I want.
  5. I can review the moves made through the game by clicking the specific move button below the board.
+
+## Live Version ##
+
+Click [here](https://react-projects-6e9alipf3-yipchisan.vercel.app) for live version of this simple app.
