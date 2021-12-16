@@ -5,13 +5,11 @@ export default function Board(props) {
 
     let [isX, setRound] = useState(true);
 
-    let [board, updateBoard] = useState(new Array(9));
-
     let [record, updateRecord] = useState(new Array());
 
-    const DATA = [
+    let [board, updateBoard] = useState([
         { id: 0, value: null },
-        { id: 1, value: null},
+        { id: 1, value: null },
         { id: 2, value: null },
         { id: 3, value: null },
         { id: 4, value: null },
@@ -19,7 +17,7 @@ export default function Board(props) {
         { id: 6, value: null },
         { id: 7, value: null },
         { id: 8, value: null },
-    ];
+    ]);
 
     const myStyle = {
         marginLeft: "auto",
@@ -39,7 +37,7 @@ export default function Board(props) {
         }
 
         let winner = decideWinner();
-        console.log(winner);
+        
         if (winner !== null) {
             
             props.haveWinner(winner);
@@ -48,8 +46,7 @@ export default function Board(props) {
     };
 
     let modifiedBoard = function (marker, position) {
-        
-        board[position] = marker;
+        board[position].value = marker;
         updateBoard(board);
         record = [...record, [marker, position]];
         updateRecord(record);
@@ -57,47 +54,46 @@ export default function Board(props) {
     };
 
     let decideWinner = function () {
-        if (board[0] !== undefined) {
-            if ((board[0] === board[1] &&
-                board[0] === board[2]) ||
-                (board[0] === board[3] &&
-                    board[0] === board[6]) ||
-                (board[0] === board[4] &&
-                board[0] === board[8])) {
-                return board[0];
+        if (board[0].value !== null) {
+            if ((board[0].value === board[1].value &&
+                board[0].value === board[2].value) ||
+                (board[0].value === board[3].value &&
+                    board[0].value === board[6].value) ||
+                (board[0].value === board[4].value &&
+                board[0].value === board[8].value)) {
+                return board[0].value;
             }
         }
 
-        if (board[1] !== undefined) {
-            if (board[1] === board[4] &&
-                    board[1] === board[7]) {
-                return board[1];
+        if (board[1].value !== null) {
+            if (board[1].value === board[4].value &&
+                    board[1].value === board[7].value) {
+                return board[1].value;
             }
         }
 
-        if (board[2] !== undefined) {
-            if ((board[2] === board[5] &&
-                board[2] === board[8]) ||
-                (board[2] === board[4] &&
-                board[2] === board[6])) {
-                return board[2];
+        if (board[2].value !== null) {
+            if ((board[2].value === board[5].value &&
+                board[2].value === board[8].value) ||
+                (board[2].value === board[4].value &&
+                board[2].value === board[6].value)) {
+                return board[2].value;
             }
         }
 
-        if (board[3] !== undefined) {
-            if (board[3] === board[4] &&
-                board[3] === board[5]) {
-                return board[3];
+        if (board[3].value !== null) {
+            if (board[3].value === board[4].value &&
+                board[3].value === board[5].value) {
+                return board[3].value;
             }
         }
 
-        if (board[6] !== undefined) {
-            if (board[6] === board[7] &&
-                board[6] === board[8]) {
-                return board[6];
+        if (board[6].value !== null) {
+            if (board[6].value === board[7].value &&
+                board[6].value === board[8].value) {
+                return board[6].value;
             }
         }
-
         
         return null;
     };
@@ -106,7 +102,7 @@ export default function Board(props) {
 
     return (
         <div style={myStyle}>
-            {DATA.map(data => <Square id={data.id} key={data.id} aftermarking={handleChange} isX={isX} />)}
+            {board.map(square => <Square id={square.id} key={square.id} aftermarking={handleChange} isX={isX} />)}
         </div>
         );
 }
