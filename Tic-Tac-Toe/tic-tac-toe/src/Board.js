@@ -6,7 +6,9 @@ export default function Board(props) {
 
     let [isX, setRound] = useState(true);
 
-    let [record, updateRecord] = useState([[null]]);
+    let [record, updateRecord] = useState([
+        {roundWinner: null, boardRecord: [null]},
+    ]);
 
     let [step, updateStep] = useState(0);
 
@@ -37,6 +39,7 @@ export default function Board(props) {
     };
 
     const handleChange = function (position) {
+
         if (isX) {
             modifiedBoard("X", position);
         } else {
@@ -44,11 +47,13 @@ export default function Board(props) {
         }
 
         let winner = decideWinner();
-        
+
         if (winner !== null) {
             
             props.haveWinner(winner);
         }
+        record = [...record, { roundWinner: winner, boardRecord: JSON.parse(JSON.stringify(board)) }];
+        updateRecord(record);
         setRound(!isX);
     };
 
@@ -57,19 +62,20 @@ export default function Board(props) {
         updateStep(nextStep);
         board[position].value = marker;
         updateBoard(board);
-        record = [...record, JSON.parse(JSON.stringify(board))];
-        updateRecord(record);
         let newButton = { id: nextStep, text: "Move #" + nextStep};
         buttonGroup = [...buttonGroup, newButton];
         updateButtonGroup(buttonGroup);
     };
 
     let timeTravel = function (position) {
+        let currentBoard = record[position].boardRecord;
         for (let i = 0; i < 9; i++) {
             if (position === 0) {
                 board[i].value = null;
+                props.haveWinner(null);
             } else {
-                board[i].value = record[position][i].value;
+                props.haveWinner(record[position].roundWinner);
+                board[i].value = currentBoard[i].value;
             }
             
         }
