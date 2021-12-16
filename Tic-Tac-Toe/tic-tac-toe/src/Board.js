@@ -9,18 +9,16 @@ export default function Board(props) {
 
     let [record, updateRecord] = useState(new Array());
 
-    let idList = Array.from(Array(9).keys());
-
     const DATA = [
-        { id: 0, value: null, isX: false },
-        { id: 1, value: null, isX: false },
-        { id: 2, value: null, isX: false },
-        { id: 3, value: null, isX: false },
-        { id: 4, value: null, isX: false },
-        { id: 5, value: null, isX: false },
-        { id: 6, value: null, isX: false },
-        { id: 7, value: null, isX: false },
-        { id: 8, value: null, isX: false },
+        { id: 0, value: null },
+        { id: 1, value: null},
+        { id: 2, value: null },
+        { id: 3, value: null },
+        { id: 4, value: null },
+        { id: 5, value: null },
+        { id: 6, value: null },
+        { id: 7, value: null },
+        { id: 8, value: null },
     ];
 
     const myStyle = {
@@ -108,7 +106,7 @@ export default function Board(props) {
 
     return (
         <div style={myStyle}>
-            {idList.map(id => <Square id={id} key={id} aftermarking={handleChange} isX={isX} />)}
+            {DATA.map(data => <Square id={data.id} key={data.id} aftermarking={handleChange} isX={isX} />)}
         </div>
         );
 }
