@@ -6,7 +6,7 @@ export default function Board(props) {
 
     let [isX, setRound] = useState(true);
 
-    let [record, updateRecord] = useState([[null, null]]);
+    let [record, updateRecord] = useState([[null]]);
 
     let [step, updateStep] = useState(0);
 
@@ -57,7 +57,7 @@ export default function Board(props) {
         updateStep(nextStep);
         board[position].value = marker;
         updateBoard(board);
-        record = [...record, [marker, position]];
+        record = [...record, JSON.parse(JSON.stringify(board))];
         updateRecord(record);
         let newButton = { id: nextStep, text: "Move #" + nextStep};
         buttonGroup = [...buttonGroup, newButton];
@@ -65,11 +65,15 @@ export default function Board(props) {
     };
 
     let timeTravel = function (position) {
-        for (let i = record.length - 1; i > position; i--) {
-            board[record[i][1]].value = null;
+        for (let i = 0; i < 9; i++) {
+            if (position === 0) {
+                board[i].value = null;
+            } else {
+                board[i].value = record[position][i].value;
+            }
+            
         }
         updateBoard(board.slice());
-        console.log(board);
         
     };
 

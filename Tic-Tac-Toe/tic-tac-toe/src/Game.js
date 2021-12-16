@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import Board from "./Board";
-import ReactDOM from 'react-dom';
+
 
 export default function Game() {
+
+    const [winner, updateWinner] = useState(null);
 
     const myStyle = {
         textAlign: "center",
@@ -10,14 +12,15 @@ export default function Game() {
 
     let haveWinner = function (person) {
 
-        let declaration = <h2>{"Our winner is " + person}</h2>;
-        ReactDOM.render(declaration, document.getElementById('declaration'));
+        updateWinner(person);
+        
     }
 
     return (
         <div>
+            <div style={myStyle}>{(winner !== null) ? "Our winner is "+ winner : "Our winner is"}</div>
             <Board haveWinner={haveWinner} />
-            <div style={myStyle} id="declaration"></div>
+            
         </div>
     );
 }
